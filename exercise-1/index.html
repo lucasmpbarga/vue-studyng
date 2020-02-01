@@ -1,0 +1,55 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<div id="exercise">
+    <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+    <p>VueJS is pretty cool - {{name}} ({{age}})</p>
+    <!-- 2) Output your age, multiplied by 3 -->
+    <p>Age multiple by 3: {{ageMultipleBy3()}}</p>
+    <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+    <p v-once>Random Float Between 0 and 1: {{randomFloatBetween0And1()}}</p>
+    <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+    <div>
+        <img style="width:100px;height:100px" v-bind:src="image">
+    </div>
+    <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+    <div>
+        <label>Name: </label><input type="text" v-on:input="changeName">
+        <br />
+        <label>Age: </label><input type="text" v-on:input="changeAge">
+    </div>
+</div>
+<script>
+    const defaultName = 'Barga';
+    const defaultAge = 25;
+    new Vue({
+        el: '#exercise',
+        data: {
+            name: defaultName,
+            age: defaultAge,
+            prefixMessage: 'Hello ',
+            image: 'https://vignette.wikia.nocookie.net/bleach/images/a/a2/Ichigo_Kurosaki.png/revision/latest/scale-to-width-down/1000?cb=20151228190838&path-prefix=pt',
+        },
+        methods: {
+            ageMultipleBy3: function () {
+                return this.age * 3
+            },
+            randomFloatBetween0And1: function () {
+                return Math.random() * (1 - 0) + 0;
+            },
+            changeName: function (event) {
+                const { value } = event.target;
+                this.name = event.target.value
+                if (value === "") {
+                    this.name = defaultName;
+                }
+            },
+            changeAge: function (event) {
+                const { value } = event.target;
+                this.age = event.target.value
+                if (value === "") {
+                    this.age = defaultAge;
+                }
+            },
+        }
+    });
+</script>

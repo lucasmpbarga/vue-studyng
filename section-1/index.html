@@ -11,20 +11,31 @@
 
 <body>
     <div id="app">
+        <h1 v-once>{{title}}</h1>
         <input type="text" v-on:input="changeTitle">
         <p>{{ prefixMessage }}{{ message }}{{ sufixMessage }}</p>
+        <p>{{ sayHello() }}</p>
+        <p><a v-bind:href="googleLink">Google</a></p>
+        <hr />
+        <p v-html="finishedLink"></p>
     </div>
     <script>
         new Vue({
             el: '#app',
             data: {
+                title: "Hello World",
                 prefixMessage: 'Hello ',
                 message: 'World ',
                 sufixMessage: '!!!',
+                googleLink: 'https://www.google.com/',
+                finishedLink: '<a href="https://www.google.com/">Google, finishedLink</a>'
             },
             methods: {
                 changeTitle: function (event) {
                     this.message = event.target.value;
+                },
+                sayHello: function () {
+                    return 'sayHello => Hello!'
                 }
             }
         })
